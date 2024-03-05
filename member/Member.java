@@ -6,6 +6,7 @@ import lombok.*;
 @ToString
 public class Member {
 
+    private Long id;
 
     private String pw;
 
@@ -26,7 +27,8 @@ public class Member {
     private double weight;
 @Builder(builderMethodName = "builder")
 
-    public Member(String pw, String pwAgain, String name, String username, String phoneNumber, String adress, String job, double height, double weight) {
+    public Member(Long id,String pw, String pwAgain, String name, String username, String phoneNumber, String adress, String job, double height, double weight) {
+        this.id = id;
         this.pw = pw;
         this.pwAgain = pwAgain;
         this.name = name;

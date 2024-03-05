@@ -1,6 +1,8 @@
 package account;
 
 import common.AbstractService;
+import enums.Message;
+import member.Member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +48,12 @@ public class AcoountServiceImpl extends AbstractService<Account> implements Acco
 
 
     @Override
-    public String save(Account account) {
+    public Message save(Account account) {
+        return null;
+    }
+
+    @Override
+    public Message save(Member member) {
         return null;
     }
 
@@ -61,7 +68,7 @@ public class AcoountServiceImpl extends AbstractService<Account> implements Acco
     }
 
     @Override
-    public Long count() {
+    public String count() {
         return null;
     }
 

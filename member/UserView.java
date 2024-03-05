@@ -45,7 +45,7 @@ public class UserView {
                     break;
                 case "6":
                     System.out.println("6-회원목록");
-                    System.out.println(userController.getUserList());
+                    System.out.println(userController.findAll());
 
                     break;
                 case "7":

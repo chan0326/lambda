@@ -2,6 +2,8 @@ package account;
 
 
 
+import enums.Message;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +16,7 @@ public class Accountcontroller {
 
 
 
-    public String createAccount(Scanner sc) {
+    public Message createAccount(Scanner sc) {
         System.out.println("생성할 계좌의 id를 입력하세요\n"+
                 "이름을 입력하세요\n"+
                 "게좌번호를 입럭세요\n" +

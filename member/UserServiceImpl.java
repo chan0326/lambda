@@ -1,22 +1,21 @@
 package member;
 
 
+import common.AbstractService;
 import common.UtilService;
 import common.UtilServiceImpl;
+import enums.Message;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class UserServiceImpl implements UserService {
-    private static UserService instance = new UserServiceImpl();
+public class UserServiceImpl extends AbstractService<Member> implements UserService {
+    private static UserServiceImpl instance = new UserServiceImpl();
     Map<String, Member> users;
     private UserServiceImpl(){
         this.users = new HashMap<>();
     }
-    public static UserService getInstance(){return instance;}
+    public static UserServiceImpl getInstance(){return instance;}
 
 
     @Override
@@ -32,6 +31,7 @@ public class UserServiceImpl implements UserService {
                             .pw("1")
                             .pwAgain("1")
                             .name(util.creatRadomName())
+                            .job(util.creatRandomJob())
                             .build());
         }
         users =map;
@@ -39,11 +39,7 @@ public class UserServiceImpl implements UserService {
         return users.size()+"더미값 추가";
     }
 
-    @Override
-    public String join(Member user) {
-        users.put(user.getUsername(),user);
-        return "회원가입 성공";
-    }
+
 
     @Override
     public String login(Member user) {
@@ -55,15 +51,7 @@ public class UserServiceImpl implements UserService {
         return "";
     }
 
-    @Override
-    public Member findUserById(String username) {
-        if (users.get(username) != null){
-            System.out.println(username+"의 정보입니다."+users);
-        }else {
-            System.out.println("존재하지 않는 ID입니다.");
-        }
-        return null;
-    }
+
 
     @Override
     public String updatePassword(Member user) {
@@ -74,26 +62,8 @@ public class UserServiceImpl implements UserService {
         }
         return "성공";
     }
-
-    @Override
-    public String deleteUser(String username) {
-        if (users.get(username) !=null){
-            users.remove(username);
-        }else {
-            System.out.println("존재하지 않는 ID입니다.");
-        }
-        return "성공";
-    }
-
-    @Override
-    public List<Member> getUserList() {
-
-        return new ArrayList<>(users.values());
-    }
-
     @Override
     public List<?> findUsersByName(String name) {
-//        ArrayList arrayList = new ArrayList<>(users.values());
         return users .values().stream().filter(i ->i.getName().equals(name)).collect(Collectors.toList());
     }
 
@@ -101,14 +71,54 @@ public class UserServiceImpl implements UserService {
     public List<?> findUsersByJob(String job) {
         return users.values().stream().filter(i->i.getJob().equals(job)).collect(Collectors.toList());
     }
-
-    @Override
-    public String countUsers() {
-        return users.size()+"명";
-    }
-
     @Override
     public Map<String, Member> getUserMap() {
         return users;
     }
+
+    @Override
+    public Message save(Member member) {
+        users.put(member.getUsername(), member);
+        return Message.SUCCESS;
+    }
+
+    @Override
+    public List<Member> findAll() {
+        return  new ArrayList<>(users.values());
+    }
+
+    @Override
+    public Optional<Member> findById(Long id) {
+        return Optional.of(users.values()
+                .stream()
+                .filter(i->i.getId().equals(id))
+                .collect(Collectors.toList()).get(0));
+    }
+
+    @Override
+    public String count() {
+        return users.size()+"";
+    }
+
+    @Override
+    public Optional<Member> getOne(String id) {
+        return Optional.of(users.get(id));
+    }
+
+    @Override
+    public String delete(Member member) {
+        users.remove(member.getUsername());
+        return "회원삭제";
+    }
+
+    @Override
+    public String deleteAll() {
+        return null;
+    }
+
+    @Override
+    public Boolean existById(Long id) {
+        return null;
+    }
+
 }

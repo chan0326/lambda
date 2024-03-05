@@ -65,4 +65,11 @@ public class UtilServiceImpl implements UtilService {
 
         return companies[createRandomInteger(0,9)];
     }
+
+    @Override
+    public String creatRandomJob() {
+        String[] job ={"교수","경찰","판사","소방관","의사","군인","택시운전사","배우","가수"};
+
+        return job[createRandomInteger(0,8)];
+    }
 }

@@ -1,13 +1,16 @@
 package member;
 
 
+import enums.Message;
+
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Scanner;
 
 
 public class UserController {
-    UserService userService ;
+    UserServiceImpl userService ;
 
     public UserController() {
         this.userService = UserServiceImpl.getInstance();
@@ -17,7 +20,7 @@ public class UserController {
         return userService.addUsers();
     }
 
-    public String join(Scanner sc) {
+    public Message join(Scanner sc) {
         System.out.println("ID, " +
                 "비밀번호, " +
                 "비밀번호 확인, " +
@@ -25,14 +28,14 @@ public class UserController {
                 "전화번호, " +
                 "주소, " +
                 "직업을 입력해주세요");
-        return userService.join(Member.builder()
+        return userService.save(Member.builder()
                         .username(sc.next())
                         .pw(sc.next())
                         .pwAgain(sc.next())
                         .name(sc.next())
                         .phoneNumber(sc.next())
                         .adress(sc.next())
-                        .adress(sc.next())
+                        .job(sc.next())
                 .build());
     }
 
@@ -45,9 +48,9 @@ public class UserController {
                 .build());
     }
 
-    public Member findUserById(Scanner sc) {
+    public Optional<Member> findUserById(Scanner sc) {
         System.out.println("검색할 ID를 입력하세요");
-        return userService.findUserById(sc.next());
+        return userService.findById(sc.nextLong());
     }
 
     public String updatePassword(Scanner sc) {
@@ -61,12 +64,12 @@ public class UserController {
 
     public String deleteUser(Scanner sc) {
         System.out.println("삭제할 ID를 입력하세요");
-        return userService.deleteUser(sc.next());
+        return userService.delete(Member.builder().username(sc.next()).build());
     }
 
-    public List<?> getUserList() {
+    public List<?> findAll() {
         System.out.println("전체 목록 출력");
-        return userService.getUserList();
+        return userService.findAll();
     }
 
     public  List<?> findUsersByName(Scanner sc) {
@@ -80,7 +83,7 @@ public class UserController {
     }
 
     public String countUsers() {
-        return userService.countUsers();
+        return userService.count();
     }
 
     public Map<String, ?> getUserMap() {

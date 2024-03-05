@@ -13,4 +13,6 @@ public interface UtilService {
 
     String creatRandomCompany();
 
+    String creatRandomJob();
+
 }
