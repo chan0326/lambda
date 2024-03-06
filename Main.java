@@ -3,10 +3,11 @@ import board.BoardView;
 import crawler.CrawlerView;
 import member.UserView;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         while (true){
             System.out.println("0-종료 1-Bord 2-user 3-Acoount 4-crawler");
