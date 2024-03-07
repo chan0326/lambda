@@ -1,5 +1,6 @@
 package member;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,4 +13,8 @@ public interface UserService {
     Map<String, ?> getUserMap();
 
     String test();
+
+    Map<String,?> findUser();
+
+    List<?> findUsers() throws SQLException;
 }

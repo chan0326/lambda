@@ -3,6 +3,7 @@ package member;
 
 import enums.Message;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,10 +11,14 @@ import java.util.Scanner;
 
 
 public class UserController {
-    private UserServiceImpl userService ;
+    UserServiceImpl userService  ;
 
     public UserController() {
         this.userService = UserServiceImpl.getInstance();
+    }
+
+    public  List<?> findUsers() throws SQLException {
+        return userService.findUsers();
     }
 
     public String addUsers() {
@@ -93,6 +98,10 @@ public class UserController {
 
     public String test() {
         return userService.test();
+    }
+
+    public Map<String,?> findUser(Scanner sc) {
+        return userService.findUser();
     }
 }
 

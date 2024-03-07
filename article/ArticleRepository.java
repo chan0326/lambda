@@ -1,37 +1,35 @@
-package member;
+package article;
+
 import java.sql.*;
 import java.util.List;
 
-
-public class MemberRepository {
-
-    private static MemberRepository instance ;
+public class ArticleRepository {
+    private static ArticleRepository instance;
 
     static {
         try {
-            instance = new MemberRepository();
+            instance = new ArticleRepository();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private Connection connection;
-    private MemberRepository() throws SQLException {
+
+    private ArticleRepository() throws SQLException {
         connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/erichgammadb",
-                "erichgamma",
-                "erichgammadb");
+                "jdbc:mysql://localhost:3306/erichgammadb"  ,"erichgamma",
+                "erichgammadb"
+        );
+
     }
 
-    public static MemberRepository getInstance() {
+
+    public static ArticleRepository getInstance() {
         return instance;
     }
 
-    public String test(){
-        return "UserRepository 연결";
-    }
-
-    public List<?> findUsers() throws SQLException {
+    public List<?> findList() throws SQLException {
         String sql = "select * from articles";
         System.out.println("sql : "+ sql);
         PreparedStatement pstmt = connection.prepareStatement(sql);
