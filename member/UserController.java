@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 
 public class UserController {
-    UserServiceImpl userService ;
+    private UserServiceImpl userService ;
 
     public UserController() {
         this.userService = UserServiceImpl.getInstance();
@@ -88,6 +88,11 @@ public class UserController {
 
     public Map<String, ?> getUserMap() {
         return userService.getUserMap();
+    }
+
+
+    public String test() {
+        return userService.test();
     }
 }
 

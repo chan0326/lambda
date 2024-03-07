@@ -11,4 +11,5 @@ public interface UserService {
     List<?> findUsersByJob(String job);
     Map<String, ?> getUserMap();
 
+    String test();
 }

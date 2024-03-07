@@ -10,12 +10,17 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserServiceImpl extends AbstractService<Member> implements UserService {
+
+
     private static UserServiceImpl instance = new UserServiceImpl();
     Map<String, Member> users;
-    private UserServiceImpl(){
+    MemberRepository memberRepository;
+    UserServiceImpl(){
         this.users = new HashMap<>();
+        this.memberRepository = MemberRepository.getInstance();
     }
     public static UserServiceImpl getInstance(){return instance;}
+
 
 
     @Override
@@ -75,6 +80,13 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     public Map<String, Member> getUserMap() {
         return users;
     }
+
+    @Override
+    public String test() {
+        return memberRepository.test();
+
+    }
+
 
     @Override
     public Message save(Member member) {

@@ -1,5 +1,7 @@
 package member;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class UserView {
@@ -34,7 +36,8 @@ public class UserView {
                     break;
                 case "3":
                     System.out.println("3-ID검색");
-                    System.out.println(userController.findUserById(sc));
+//                    System.out.println(userController.findUserById(sc));
+//                    userController.findUser();
                     break;
                 case "4":
                     System.out.println("4-비번변경");
@@ -45,6 +48,8 @@ public class UserView {
                     break;
                 case "6":
                     System.out.println("6-회원목록");
+                    String test = userController.test();
+                    System.out.println(test);
                     System.out.println(userController.findAll());
 
                     break;
