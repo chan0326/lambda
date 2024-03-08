@@ -35,7 +35,7 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
             map.put(username,
                     Member.builder()
                             .username(username)
-                            .pw("1")
+                            .password("1")
                             .pwAgain("1")
                             .name(util.creatRadomName())
                             .job(util.creatRandomJob())
@@ -50,7 +50,7 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
 
     @Override
     public String login(Member user) {
-        if (users.get(user.getUsername())!= null && users.get(user.getUsername()).getPw().equals(user.getPw())){
+        if (users.get(user.getUsername())!= null && users.get(user.getUsername()).getPassword().equals(user.getPassword())){
             System.out.println("로그인에 성공하였습니다");
         }else {
             System.out.println("아이디,비번이 오류입니다.");
@@ -63,7 +63,7 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     @Override
     public String updatePassword(Member user) {
         if (users.get(user.getUsername()) !=null){
-            users.get(user.getUsername()).setPw(user.getPw());
+            users.get(user.getUsername()).setPassword(user.getPassword());
         }else {
             System.out.println("존재하지 않는 ID입니다.");
         }
@@ -97,6 +97,21 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     @Override
     public List<?> findUsers() throws SQLException {
         return memberRepository.findUsers();
+    }
+
+    @Override
+    public String creatTable() throws SQLException {
+        return memberRepository.creatTable();
+    }
+
+    @Override
+    public String deleteTable() throws SQLException {
+        return memberRepository.deleteTable();
+    }
+
+    @Override
+    public String tableadd() {
+        return memberRepository.tableadd();
     }
 
 

@@ -8,10 +8,10 @@ import common.UtilServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-//public class BoardView {
-//    public static void main() {
-//        List<Board> articles = new ArrayList<>();
-//        UtilService utile = UtilServiceImpl.getInstance();
+public class BoardView {
+    public static void main() {
+        List<Board> articles = new ArrayList<>();
+        UtilService utile = UtilServiceImpl.getInstance();
 
 
 
@@ -29,7 +29,7 @@ import java.util.List;
 //            System.out.println(i.toString());
 //        });
 //
-//        }
+        }
 
-//    }
+    }
 

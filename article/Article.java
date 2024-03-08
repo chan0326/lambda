@@ -11,13 +11,15 @@ public class Article {
     private String title;
     private String content;
     private String writer;
+    private String registarDate;
 
     @Builder(builderMethodName = "builder")
 
-    public Article(Long id, String title, String content, String writer) {
+    public Article(Long id, String title, String content, String writer,String registarDate) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.writer = writer;
+        this.registarDate =registarDate;
     }
 }

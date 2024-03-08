@@ -33,10 +33,9 @@ public class Authcontroller {
                 "직업을 입력해주세요");
         return as.save(Member.builder()
                         .username(sc.next())
-                        .pw(sc.next())
+                        .password(sc.next())
                         .pwAgain(sc.next())
-                        .phoneNumber(sc.next())
-                        .adress(sc.next())
+                        .phone(sc.next())
                         .job(sc.next())
                 .build());
     }
@@ -49,7 +48,7 @@ public class Authcontroller {
         System.out.println("ID,PW을 입력해주세요");
         return as.login(Member.builder()
                 .username(sc.next())
-                .pw(sc.next())
+                .password(sc.next())
                 .build()
         );
     }

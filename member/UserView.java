@@ -18,11 +18,15 @@ public class UserView {
                     "3-ID검색\n " +
                     "4-비번변경\n" +
                     "5-탈퇴\n " +
-                    "6-회원목록\n " +
+                    "ls-회원목록\n " +
                     "7-이름검색\n" +
                     "8-직업검색\n" +
                     "9-회원수\n"+
-                    "10-UserMap");
+                    "10-UserMap\n"+
+                    "touch-테이블생성\n"+
+                    "touchrow-내용추가"+
+                    "rm-테이블삭제\n"
+            );
             switch (sc.next()){
                 case "0":
                     System.out.println("종료");
@@ -47,13 +51,10 @@ public class UserView {
                     System.out.println("5-탈퇴");
                     System.out.println(userController.deleteUser(sc));
                     break;
-                case "6":
-                    System.out.println("6-회원목록");
-//                    String test = userController.test();
-//                    System.out.println(test);
-//                    System.out.println(userController.findAll());
+                case "ls":
+                    System.out.println("ls-회원목록");
                     List<?> Members = userController.findUsers();
-//                    users.forEach(i-> System.out.println(i));
+                    Members.forEach((i)-> System.out.println(i));
 //                    System.out.println(users);
 
                     break;
@@ -81,6 +82,18 @@ public class UserView {
                         System.out.printf("아이디: %s, 회원정보: %s", k, v);
                     });
                         break;
+                case "touch":
+                    System.out.println("touch-테이블생성");
+                    userController.creatTable();
+                    break;
+                    case "touchrow":
+                    System.out.println("touchrow-테이블행추가");
+                    userController.tableadd(sc);
+                    break;
+                case "rm":
+                    System.out.println("rm-테이블삭제");
+                    userController.deleteTable();
+                    break;
 
             }
 

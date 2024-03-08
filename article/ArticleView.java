@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ArticleView {
-    static ArticleController articleController = ArticleController.getInstance();
+
     public static void main(Scanner sc) throws SQLException {
+        ArticleController articleController= new ArticleController();
 
         while (true) {
             System.out.println("[사용자메뉴]\n" +
@@ -21,10 +22,11 @@ public class ArticleView {
                 case "1":
                     System.out.println("1-글목록");
                     List<?>article = articleController.findarticlecle();
+                    article.forEach(i-> System.out.println(i));
                     break;
                 case "2":
-                    System.out.println("2-로그인");
-                    System.out.println();
+                    System.out.println("2-테이블 생성 ");
+                    System.out.println("테이블 생성 성공");
                     break;
                 case "3":
                     System.out.println("3-ID검색");

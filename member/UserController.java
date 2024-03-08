@@ -35,11 +35,10 @@ public class UserController {
                 "직업을 입력해주세요");
         return userService.save(Member.builder()
                         .username(sc.next())
-                        .pw(sc.next())
+                        .password(sc.next())
                         .pwAgain(sc.next())
                         .name(sc.next())
-                        .phoneNumber(sc.next())
-                        .adress(sc.next())
+                        .phone(sc.next())
                         .job(sc.next())
                 .build());
     }
@@ -49,7 +48,7 @@ public class UserController {
         System.out.println("PW를 입력하세요");
         return userService.login(Member.builder()
                         .username(sc.next())
-                        .pw(sc.next())
+                        .password(sc.next())
                 .build());
     }
 
@@ -63,7 +62,7 @@ public class UserController {
         System.out.println("수정할 PW를 입력하세요");
         return userService.updatePassword(Member.builder()
                         .username(sc.next())
-                        .pw(sc.next())
+                        .password(sc.next())
                 .build());
     }
 
@@ -102,6 +101,20 @@ public class UserController {
 
     public Map<String,?> findUser(Scanner sc) {
         return userService.findUser();
+    }
+
+    public String creatTable() throws SQLException {
+        return userService.creatTable();
+
+    }
+
+    public String deleteTable() throws SQLException {
+        return userService.deleteTable();
+
+    }
+
+    public String tableadd(Scanner sc) {
+        return userService.table();
     }
 }
 
