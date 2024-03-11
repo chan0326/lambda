@@ -1,10 +1,10 @@
-package member;
+package com.erich.api.member;
 
 
-import common.AbstractService;
-import common.UtilService;
-import common.UtilServiceImpl;
-import enums.Message;
+import com.erich.api.common.AbstractService;
+import com.erich.api.common.UtilService;
+import com.erich.api.common.UtilServiceImpl;
+import com.erich.api.enums.Message;
 
 import java.sql.SQLException;
 import java.util.*;

@@ -1,4 +1,4 @@
-package instance;
+package com.erich.api.instance;
 
 public class InstanceServiceimpl implements  InstanceService{
     private static InstanceServiceimpl instance = new InstanceServiceimpl();

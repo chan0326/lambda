@@ -1,8 +1,8 @@
-package account;
+package com.erich.api.account;
 
-import common.AbstractService;
-import enums.Message;
-import member.Member;
+import com.erich.api.common.AbstractService;
+import com.erich.api.enums.Message;
+import com.erich.api.member.Member;
 
 import java.util.ArrayList;
 import java.util.List;

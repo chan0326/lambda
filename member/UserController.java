@@ -1,7 +1,7 @@
-package member;
+package com.erich.api.member;
 
 
-import enums.Message;
+import com.erich.api.enums.Message;
 
 import java.sql.SQLException;
 import java.util.List;

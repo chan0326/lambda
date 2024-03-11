@@ -1,9 +1,9 @@
-package board;
+package com.erich.api.board;
 
 
 
-import common.UtilService;
-import common.UtilServiceImpl;
+import com.erich.api.common.UtilService;
+import com.erich.api.common.UtilServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;

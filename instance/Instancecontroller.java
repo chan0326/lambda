@@ -1,4 +1,4 @@
-package instance;
+package com.erich.api.instance;
 
 public class Instancecontroller {
     private static Instancecontroller instance =new Instancecontroller();

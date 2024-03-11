@@ -1,6 +1,6 @@
-package common;
+package com.erich.api.common;
 
-import enums.Message;
+import com.erich.api.enums.Message;
 
 import java.io.IOException;
 import java.util.Map;

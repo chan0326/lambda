@@ -1,9 +1,9 @@
-package product;
+package com.erich.api.product;
 
 
 
-import common.UtilService;
-import common.UtilServiceImpl;
+import com.erich.api.common.UtilService;
+import com.erich.api.common.UtilServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;

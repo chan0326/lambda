@@ -1,6 +1,6 @@
-package member;
+package com.erich.api.member;
 
-import article.Article;
+import com.erich.api.article.Article;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,8 +8,10 @@ import java.util.List;
 
 
 public class MemberRepository {
-
     private static MemberRepository instance;
+    private PreparedStatement pstmt ;
+    private ResultSet rs;
+
 
     static {
         try {
@@ -26,6 +28,8 @@ public class MemberRepository {
                 "jdbc:mysql://localhost:3306/erichgammadb",
                 "erichgamma",
                 "erichgammadb");
+        pstmt = null;
+        rs = null;
     }
 
     public static MemberRepository getInstance() {
@@ -40,8 +44,8 @@ public class MemberRepository {
         List<Member> ls = new ArrayList<>();
         String sql = "select * from users";
         System.out.println("sql : " + sql);
-        PreparedStatement pstmt = connection.prepareStatement(sql);
-        ResultSet rs = pstmt.executeQuery();
+         pstmt = connection.prepareStatement(sql);
+         rs = pstmt.executeQuery();
         if (rs.next()) {
             do {
                 ls.add(Member.builder()
@@ -58,11 +62,6 @@ public class MemberRepository {
         } else {
             System.out.println("데이터가 없습니다.");
         }
-
-        rs.close();
-        pstmt.close();
-        connection.close();
-
         return ls;
     }
 
@@ -73,14 +72,14 @@ public class MemberRepository {
                 "weight VARCHAR(20),job VARCHAR(20))";
 
 
-            PreparedStatement pstmt = connection.prepareStatement(sql);
+             pstmt = connection.prepareStatement(sql);
             pstmt.execute(sql);
             System.out.println("테이블생성,테이블 개수:");
         }catch (Exception e1){
             System.out.println("테이블 생성 실패 이유 : " + e1);
 
         }
-        connection.close();
+
         return "테이블생성성공";
         // retrun (ex ==0) ? "succes" : "Fail"; 삼항 연산자.
     }
@@ -88,13 +87,13 @@ public class MemberRepository {
     public String deleteTable() throws SQLException {
         try {
             String sql = "Drop table users";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
+             pstmt = connection.prepareStatement(sql);
             int result = pstmt.executeUpdate(sql);
             System.out.println("데이터 삭제 성공!"+result);
         } catch(Exception e) {
             System.out.println("데이터 삭제 실패 이유 : " + e);
         }
-        connection.close();
+
         return "테이블 삭제 성공";
     }
 

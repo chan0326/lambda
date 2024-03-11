@@ -1,9 +1,9 @@
-package article;
+package com.erich.api.article;
 
-import common.AbstractRepository;
-import common.AbstractService;
-import enums.Message;
-import member.Member;
+import com.erich.api.common.AbstractRepository;
+import com.erich.api.common.AbstractService;
+import com.erich.api.enums.Message;
+import com.erich.api.member.Member;
 
 import java.sql.SQLException;
 import java.util.List;

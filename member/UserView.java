@@ -1,4 +1,4 @@
-package member;
+package com.erich.api.member;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,7 +24,7 @@ public class UserView {
                     "9-회원수\n"+
                     "10-UserMap\n"+
                     "touch-테이블생성\n"+
-                    "touchrow-내용추가"+
+                    "touchrow-내용추가\n"+
                     "rm-테이블삭제\n"
             );
             switch (sc.next()){

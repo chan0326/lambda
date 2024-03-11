@@ -1,10 +1,12 @@
-import account.AcoountView;
-import board.BoardView;
-import article.ArticleView;
+package com.erich.api;
 
-import crawler.CrawlerView;
-import instance.InstanceView;
-import member.UserView;
+import com.erich.api.account.AcoountView;
+import com.erich.api.board.BoardView;
+import com.erich.api.article.ArticleView;
+
+import com.erich.api.crawler.CrawlerView;
+import com.erich.api.instance.InstanceView;
+import com.erich.api.member.UserView;
 
 import java.io.IOException;
 import java.sql.SQLException;

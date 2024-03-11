@@ -1,4 +1,4 @@
-package member;
+package com.erich.api.member;
 import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
