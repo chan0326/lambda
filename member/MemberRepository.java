@@ -82,6 +82,7 @@ public class MemberRepository {
         }
         connection.close();
         return "테이블생성성공";
+        // retrun (ex ==0) ? "succes" : "Fail"; 삼항 연산자.
     }
 
     public String deleteTable() throws SQLException {
@@ -98,6 +99,7 @@ public class MemberRepository {
     }
 
     public String tableadd() {
+
         return "내용추가 성공";
     }
 }

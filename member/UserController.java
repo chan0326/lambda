@@ -114,7 +114,23 @@ public class UserController {
     }
 
     public String tableadd(Scanner sc) {
-        return userService.table();
+        System.out.println("username, " +
+                "비밀번호, " +
+                "비밀번호 확인, " +
+                "이름, " +
+                "전화번호, " +
+                "주소, " +
+                "직업을 입력해주세요");
+         userService.save(Member.builder()
+                .username(sc.next())
+                .password(sc.next())
+                .pwAgain(sc.next())
+                .name(sc.next())
+                .phone(sc.next())
+                .job(sc.next())
+                .build());
+         return userService.tableadd();
+
     }
 }
 

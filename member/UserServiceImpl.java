@@ -106,6 +106,7 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
 
     @Override
     public String deleteTable() throws SQLException {
+
         return memberRepository.deleteTable();
     }
 
