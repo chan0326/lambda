@@ -67,20 +67,13 @@ public class MemberRepository {
 
     public String creatTable() throws SQLException {
 
-        try {String sql = "CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(20),"
+        String sql = "CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(20),"
                 + " password varchar(20) , name VARCHAR(20),phone VARCHAR(20),height VARCHAR(20)," +
                 "weight VARCHAR(20),job VARCHAR(20))";
 
 
              pstmt = connection.prepareStatement(sql);
-            pstmt.execute(sql);
-            System.out.println("테이블생성,테이블 개수:");
-        }catch (Exception e1){
-            System.out.println("테이블 생성 실패 이유 : " + e1);
-
-        }
-
-        return "테이블생성성공";
+        return (pstmt.executeUpdate() >=0)?"성공" :"실패" ;
         // retrun (ex ==0) ? "succes" : "Fail"; 삼항 연산자.
     }
 
