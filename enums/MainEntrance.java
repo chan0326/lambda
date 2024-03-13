@@ -1,41 +1,78 @@
 package com.erich.api.enums;
 
 import com.erich.api.Main;
+import com.erich.api.account.AcoountView;
+import com.erich.api.article.ArticleView;
 import com.erich.api.board.BoardView;
+import com.erich.api.crawler.CrawlerView;
+import com.erich.api.member.UserView;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
 
+import java.util.Scanner;
 import java.util.function.Function;
 import java.util.function.Predicate;
- enum MainEntrance {
-    EXIT("x",i->i),
-    BOARD("b",i->{BoardView.main();
-    return "";}),
-    USER("u",i->i),
-    ACCOUNT("m",i->i),
-    CRAWLER("c",i->i),
-    ARTICLE("a",i->i);
-    private final String input;
+import java.util.stream.Stream;
 
-    private final Function<String,String>function;
+public enum MainEntrance {
+     EXIT("e", i -> {
+         System.out.println("EXIT");
+         return false;
+     }),
+     USER("b", i -> {
+         BoardView.main(i);
+         return true;
+     }),
+     ACCOUNT("m", i -> {
+         AcoountView.main(i);
+         return true;
+     }),
+     CRAWLER("c", i -> {
+         try {
+             CrawlerView.main(i);
+         } catch (IOException e) {
+             throw new RuntimeException(e);
+         }
+         return true;
+     }),
+     Article("a", i -> {
+         try {
+             ArticleView.main(i);
+         } catch (SQLException e) {
+             throw new RuntimeException(e);
+         }
+         return true;
+     }),
+     User("u", i -> {
+         try {
+             UserView.main(i);
+         } catch (SQLException e) {
+             throw new RuntimeException(e);
+         }
+         return true;
+     }),
+     ERROR("error", i -> {
+         System.out.println("Wrong Input");
+         return true;
+     });
+
+     private final String name;
+     private final Predicate<Scanner> predicate;
 
 
+     MainEntrance(String name, Predicate<Scanner> predicate) {
+         this.name = name;
+         this.predicate = predicate;
+     }
 
-    MainEntrance(String input, Function<String, String> function) {
-        this.input = input;
-
-        this.function = function;
-    }
-
-    public static String Getname(String input) {
-        return "";
-    }
-    static MainEntrance GetEnum (String a){
-        return Arrays.stream(values()).filter(i -> i.input.equals(a)).findFirst().orElseThrow(() -> new IllegalArgumentException("올바른 값이 아닙니다."));
-    }
-
-
-
-}
+     public static Boolean mainEntrance(Scanner scan){
+         System.out.println("e-Exit, b-Board,u-User, m-Account, c-Crawler, a-Article");
+         String str = scan.next();
+         return Stream.of(values()).filter(i -> i.name.equals(str))
+                 .findAny().orElse(ERROR).predicate.test(scan);
+     }
+ }
 
 
