@@ -1,3 +1,4 @@
+
 package com.erich.api.member;
 
 import com.erich.api.article.Article;
@@ -93,5 +94,6 @@ public class MemberRepository {
     public String tableadd() {
 
         return "내용추가 성공";
+
     }
 }
