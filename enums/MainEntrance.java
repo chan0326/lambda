@@ -1,6 +1,5 @@
 package com.erich.api.enums;
 
-import com.erich.api.Main;
 import com.erich.api.account.AcoountView;
 import com.erich.api.article.ArticleView;
 import com.erich.api.board.BoardView;
@@ -9,8 +8,6 @@ import com.erich.api.member.UserView;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
-
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.function.Predicate;
