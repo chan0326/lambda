@@ -7,6 +7,8 @@ import java.util.List;
 public class ArticleRepository {
     private static ArticleRepository instance;
 
+    private Connection connection;
+
     static {
         try {
             instance = new ArticleRepository();
@@ -15,7 +17,10 @@ public class ArticleRepository {
         }
     }
 
-    private Connection connection;
+
+    public static ArticleRepository getInstance() {
+        return instance;
+    }
 
     private ArticleRepository() throws SQLException {
         connection = DriverManager.getConnection(
@@ -23,11 +28,6 @@ public class ArticleRepository {
                 "erichgammadb"
         );
 
-    }
-
-
-    public static ArticleRepository getInstance() {
-        return instance;
     }
 
     public List<?> findList() throws SQLException {
