@@ -11,10 +11,16 @@ import java.util.Scanner;
 
 
 public class UserController {
+
+    private static UserController instance = new UserController();
     UserServiceImpl userService  ;
 
     public UserController() {
         this.userService = UserServiceImpl.getInstance();
+    }
+
+    public static UserController getinstance() {
+        return instance;
     }
 
     public  List<?> findUsers() throws SQLException {

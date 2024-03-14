@@ -6,6 +6,7 @@ import com.erich.api.article.ArticleView;
 
 import com.erich.api.crawler.CrawlerView;
 import com.erich.api.enums.MainEntrance;
+import com.erich.api.enums.NavigationFunction;
 import com.erich.api.instance.InstanceView;
 import com.erich.api.member.UserView;
 
@@ -20,6 +21,7 @@ import java.util.function.Predicate;
 public class Main {
     public static void main(String[] args) throws IOException, SQLException {
         Scanner sc = new Scanner(System.in);
-        MainEntrance.mainEntrance(sc);
+//        MainEntrance.mainEntrance(sc);
+         NavigationFunction.navimain(sc);
     }
 }

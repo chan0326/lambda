@@ -1,4 +1,29 @@
 package com.erich.api.enums;
 
-public class NavigationConsumer {
+import java.util.Scanner;
+import java.util.function.Consumer;
+
+public enum NavigationConsumer {
+    EXIT("e", (sc) -> {}),
+    USER("u",(sc) -> {} ),
+    ARTICLE("a",(sc) -> {}),
+    ACCOUNT("ac",(sc) -> {}),
+    CRAWLER("c",(sc) -> {} ),
+    //BOARD("b", i->""),
+    NAVIGATION_ERROR("er",(sc) -> {})
+    ;
+    private final String name;
+    private final Consumer<Scanner> consumer;
+
+    NavigationConsumer(String name, Consumer<Scanner> consumer) {
+        this.name = name;
+        this.consumer = consumer;
+    }
+    public static boolean navimain(Scanner sc) {
+        System.out.println(
+                "x-Exit u-user a-Article ac-Account c-Crawler b-Board");
+
+
+        return false;
+    }
 }
