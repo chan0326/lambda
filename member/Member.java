@@ -1,4 +1,4 @@
-package member;
+package com.erich.api.member;
 import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -8,7 +8,7 @@ public class Member {
 
     private Long id;
 
-    private String pw;
+    private String password;
 
     private String pwAgain;
 
@@ -16,9 +16,9 @@ public class Member {
 
     private String Username;
 
-    private String phoneNumber;
+    private String phone;
 
-    private String adress;
+    private Long adressId;
 
     private String job;
 
@@ -27,20 +27,19 @@ public class Member {
     private double weight;
 @Builder(builderMethodName = "builder")
 
-    public Member(Long id,String pw, String pwAgain, String name, String username, String phoneNumber, String adress, String job, double height, double weight) {
+    public Member(Long id, String password, String pwAgain, String name, String username, String phone,  String job, double height, double weight) {
         this.id = id;
-        this.pw = pw;
+        this.password = password;
         this.pwAgain = pwAgain;
         this.name = name;
         this.Username = username;
-        this.phoneNumber = phoneNumber;
-        this.adress = adress;
+        this.phone = phone;
         this.job = job;
         this.height = height;
         this.weight = weight;
     }
 
-    public void setPw(String pw) {
+    public void setPassword(String password) {
 
     }
 }

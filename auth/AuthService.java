@@ -1,8 +1,8 @@
-package auth;
+package com.erich.api.auth;
 
 
 
-import member.Member;
+import com.erich.api.member.Member;
 
 import java.util.List;
 import java.util.Map;

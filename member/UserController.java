@@ -1,8 +1,9 @@
-package member;
+package com.erich.api.member;
 
 
-import enums.Message;
+import com.erich.api.enums.Message;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,10 +11,14 @@ import java.util.Scanner;
 
 
 public class UserController {
-    UserServiceImpl userService ;
+    UserServiceImpl userService  ;
 
     public UserController() {
         this.userService = UserServiceImpl.getInstance();
+    }
+
+    public  List<?> findUsers() throws SQLException {
+        return userService.findUsers();
     }
 
     public String addUsers() {
@@ -30,11 +35,10 @@ public class UserController {
                 "직업을 입력해주세요");
         return userService.save(Member.builder()
                         .username(sc.next())
-                        .pw(sc.next())
+                        .password(sc.next())
                         .pwAgain(sc.next())
                         .name(sc.next())
-                        .phoneNumber(sc.next())
-                        .adress(sc.next())
+                        .phone(sc.next())
                         .job(sc.next())
                 .build());
     }
@@ -44,7 +48,7 @@ public class UserController {
         System.out.println("PW를 입력하세요");
         return userService.login(Member.builder()
                         .username(sc.next())
-                        .pw(sc.next())
+                        .password(sc.next())
                 .build());
     }
 
@@ -58,7 +62,7 @@ public class UserController {
         System.out.println("수정할 PW를 입력하세요");
         return userService.updatePassword(Member.builder()
                         .username(sc.next())
-                        .pw(sc.next())
+                        .password(sc.next())
                 .build());
     }
 
@@ -88,6 +92,45 @@ public class UserController {
 
     public Map<String, ?> getUserMap() {
         return userService.getUserMap();
+    }
+
+
+    public String test() {
+        return userService.test();
+    }
+
+    public Map<String,?> findUser(Scanner sc) {
+        return userService.findUser();
+    }
+
+    public String creatTable() throws SQLException {
+        return userService.creatTable();
+
+    }
+
+    public String deleteTable() throws SQLException {
+        return userService.deleteTable();
+
+    }
+
+    public String tableadd(Scanner sc) {
+        System.out.println("username, " +
+                "비밀번호, " +
+                "비밀번호 확인, " +
+                "이름, " +
+                "전화번호, " +
+                "주소, " +
+                "직업을 입력해주세요");
+         userService.save(Member.builder()
+                .username(sc.next())
+                .password(sc.next())
+                .pwAgain(sc.next())
+                .name(sc.next())
+                .phone(sc.next())
+                .job(sc.next())
+                .build());
+         return userService.tableadd();
+
     }
 }
 

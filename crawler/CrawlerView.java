@@ -1,6 +1,6 @@
-package crawler;
+package com.erich.api.crawler;
 
-import member.UserController;
+import com.erich.api.member.UserController;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;

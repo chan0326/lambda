@@ -1,7 +1,7 @@
-package crawler;
+package com.erich.api.crawler;
 
-import member.Member;
-import member.UserServiceImpl;
+import com.erich.api.member.Member;
+import com.erich.api.member.UserServiceImpl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

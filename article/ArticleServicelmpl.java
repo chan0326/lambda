@@ -1,54 +1,33 @@
-package com.erich.api.account;
+package com.erich.api.article;
 
+import com.erich.api.common.AbstractRepository;
 import com.erich.api.common.AbstractService;
 import com.erich.api.enums.Message;
 import com.erich.api.member.Member;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class AcoountServiceImpl extends AbstractService<Account> implements AccountService  {
-    private  static AcoountServiceImpl instance = new AcoountServiceImpl();
+public class ArticleServicelmpl extends AbstractService implements ArticleService{
+    private static ArticleServicelmpl instance = new ArticleServicelmpl();
 
-    List<Account> list ;
-
-    private AcoountServiceImpl(){
-        this.list = new ArrayList<>();;
+    private ArticleRepository articleRepository;
+    private ArticleServicelmpl(){
+      this.articleRepository =ArticleRepository.getInstance();
     }
-    public static AcoountServiceImpl getInstance(){
+
+    public static ArticleServicelmpl getInstance() {
         return instance;
     }
 
-
-
-
-
-
     @Override
-    public String deposit(Account acoount) {
-
-        return "";
-
+    public List<?> findarticle() throws SQLException {
+        return articleRepository.findList();
     }
 
     @Override
-    public String withdraw(Account account) {
-        return "";
-
-    }
-
-    @Override
-    public String getBalance(String accountNumber) {
-        return null;
-    }
-
-
-
-
-
-    @Override
-    public Message save(Account account) {
+    public Message save(Object o) {
         return null;
     }
 
@@ -78,11 +57,9 @@ public class AcoountServiceImpl extends AbstractService<Account> implements Acco
     }
 
     @Override
-    public String delete(Account account) {
+    public String delete(Object o) {
         return null;
     }
-
-
 
     @Override
     public String deleteAll() {

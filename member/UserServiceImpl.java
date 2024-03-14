@@ -1,21 +1,28 @@
-package member;
+package com.erich.api.member;
 
 
-import common.AbstractService;
-import common.UtilService;
-import common.UtilServiceImpl;
-import enums.Message;
+import com.erich.api.common.AbstractService;
+import com.erich.api.common.UtilService;
+import com.erich.api.common.UtilServiceImpl;
+import com.erich.api.enums.Message;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserServiceImpl extends AbstractService<Member> implements UserService {
+
+
     private static UserServiceImpl instance = new UserServiceImpl();
     Map<String, Member> users;
+    MemberRepository memberRepository;
     private UserServiceImpl(){
         this.users = new HashMap<>();
+        this.memberRepository = MemberRepository.getInstance();
     }
-    public static UserServiceImpl getInstance(){return instance;}
+    public static UserServiceImpl getInstance(){
+        return instance;}
+
 
 
     @Override
@@ -28,7 +35,7 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
             map.put(username,
                     Member.builder()
                             .username(username)
-                            .pw("1")
+                            .password("1")
                             .pwAgain("1")
                             .name(util.creatRadomName())
                             .job(util.creatRandomJob())
@@ -43,7 +50,7 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
 
     @Override
     public String login(Member user) {
-        if (users.get(user.getUsername())!= null && users.get(user.getUsername()).getPw().equals(user.getPw())){
+        if (users.get(user.getUsername())!= null && users.get(user.getUsername()).getPassword().equals(user.getPassword())){
             System.out.println("로그인에 성공하였습니다");
         }else {
             System.out.println("아이디,비번이 오류입니다.");
@@ -56,7 +63,7 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     @Override
     public String updatePassword(Member user) {
         if (users.get(user.getUsername()) !=null){
-            users.get(user.getUsername()).setPw(user.getPw());
+            users.get(user.getUsername()).setPassword(user.getPassword());
         }else {
             System.out.println("존재하지 않는 ID입니다.");
         }
@@ -75,6 +82,39 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     public Map<String, Member> getUserMap() {
         return users;
     }
+
+    @Override
+    public String test() {
+        return memberRepository.test();
+
+    }
+
+    @Override
+    public Map<String, ?> findUser() {
+        return null;
+    }
+
+    @Override
+    public List<?> findUsers() throws SQLException {
+        return memberRepository.findUsers();
+    }
+
+    @Override
+    public String creatTable() throws SQLException {
+        return memberRepository.creatTable();
+    }
+
+    @Override
+    public String deleteTable() throws SQLException {
+
+        return memberRepository.deleteTable();
+    }
+
+    @Override
+    public String tableadd() {
+        return memberRepository.tableadd();
+    }
+
 
     @Override
     public Message save(Member member) {
