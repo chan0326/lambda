@@ -8,12 +8,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Accountcontroller {
+    private static Accountcontroller instance = new Accountcontroller();
      AcoountServiceImpl as ;
 
     public Accountcontroller() {
         this.as = AcoountServiceImpl.getInstance();
     }
 
+    public static Accountcontroller getinstance() {
+        return instance;
+    }
 
 
     public Message createAccount(Scanner sc) {
