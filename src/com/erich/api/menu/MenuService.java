@@ -1,14 +1,16 @@
 package com.erich.api.menu;
 
+import com.erich.api.enums.Message;
+
 import java.sql.SQLException;
 import java.util.List;
 
 public interface MenuService {
 
-    List<?> findMenu();
+    Message makeMenuTable();
 
-    String creattable() throws SQLException;
+    Message removeTable();
 
-    String inserttable() throws SQLException;
+    List<?> getMenusByCategory(String category);
 
 }

@@ -1,6 +1,6 @@
 package com.erich.api.enums;
 
-import com.erich.api.account.AcoountView;
+import com.erich.api.account.AccountView;
 import com.erich.api.article.ArticleView;
 import com.erich.api.crawler.CrawlerView;
 import com.erich.api.member.UserView;
@@ -29,8 +29,8 @@ public enum NavigationFunction {
         }
         return "";
     }),
-    ACCOUNT("a", i-> {
-        AcoountView.main(i);
+    ACCOUNT("m", i-> {
+        AccountView.main(i);
         return "";
     }),
     CRAWLER("c", i-> {
@@ -41,7 +41,7 @@ public enum NavigationFunction {
         }
         return "";
     }),
-    //BOARD("b", i->""),
+//    BOARD("b", i->""),
     //NAVIGATION_ERROR("error",i->"er")
 
     ;

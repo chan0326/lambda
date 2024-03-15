@@ -1,11 +1,10 @@
 package com.erich.api.menu;
 
+import com.erich.api.enums.Message;
 import com.erich.api.member.MemberRepository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuRepository {
@@ -21,38 +20,74 @@ public class MenuRepository {
 
     private Connection connection;
     private PreparedStatement pstmt ;
+    private ResultSet rs;
 
-    public MenuRepository() throws SQLException {
+
+    private MenuRepository() throws SQLException {
         connection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/erichgammadb", "erichgamma",
                 "erichgammadb"
+
         );
-
-
+        pstmt = null;
+        rs = null;
     }
     public static MenuRepository getInstance(){
         return instance;
     }
 
 
-    public  List<?> findMenu(){
-        return null;
+
+
+    public Message makeTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS menus (" +
+                "id INT AUTO_INCREMENT PRIMARY KEY," +
+                "category VARCHAR(10) NOT NULL," +
+                "item VARCHAR(20) NOT NULL)";
+        try {
+            pstmt = connection.prepareStatement(sql);
+            return pstmt.executeUpdate() >= 0 ? Message.SUCCESS : Message.FAIL;
+        } catch (SQLException e){
+            System.err.println("SQL Exception Occurred");
+            return Message.SQL_ERROR;
+        }
     }
 
-
-    public String creattable() throws SQLException {
-        String sql = "CREATE TABLE menu (id INT AUTO_INCREMENT PRIMARY KEY, item VARCHAR(20)" +
-                ",category VARCHAR(20))";
-
-
-        pstmt = connection.prepareStatement(sql);
-        return (pstmt.executeUpdate() >=0)?"성공" :"실패" ;
+    public Message insertMenu(Menu menu)  {
+        String sql = "INSERT INTO menus(category, item) VALUES(?,?)";
+        try {
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, menu.getCategory());
+            pstmt.setString(2, menu.getItem());
+            return pstmt.executeUpdate() >= 0 ? Message.SUCCESS : Message.FAIL;
+        } catch (SQLException e){
+            System.err.println("SQL Exception Occurred :" + menu.getCategory() + " " + menu.getItem());
+            return Message.SQL_ERROR;
+        }
+    }
+    public Message removeTable() {
+        String sql = "DROP TABLE IF EXISTS menus";
+        try {
+            pstmt = connection.prepareStatement(sql);
+            return pstmt.executeUpdate() >= 0 ? Message.SUCCESS : Message.FAIL;
+        } catch (SQLException e){
+            System.err.println("SQL Exception Occurred");
+            return Message.SQL_ERROR;
+        }
+    }
+    public List<?> getMenusByCategory(String category){
+        String sql = "SELECT m.item FROM menus m WHERE category = ?";
+        List<Menu> menus = new ArrayList<>();
+        try {
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, category);
+            rs = pstmt.executeQuery();
+            while(rs.next())    menus.add(Menu.builder().item(rs.getString(1)).build());
+        } catch (SQLException e){
+            System.err.println("SQL Exception Occurred");
+            return menus;
+        }
+        return menus;
     }
 
-    public String inserttable() throws SQLException {
-        String sql = "insert into menu (item,category) values ('1-회원가입','users')";
-
-        pstmt = connection.prepareStatement(sql);
-        return (pstmt.executeUpdate() >=0)?"성공" :"실패" ;
-    }
 }

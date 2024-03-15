@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 public enum UserRouter {
     EXIT("0", i ->{
-        System.out.println("종료");
+        System.out.println("0-종료");
         return false;
     }),
     Join("1", i ->{
@@ -26,12 +26,12 @@ public enum UserRouter {
         System.out.println("2-로그인");
         System.out.println(UserController.getinstance().login(i));
         return true;}),
-    IDSearch("3", i ->{
+    FindId("3", i ->{
         System.out.println("3-ID검색");
 //                    System.out.println(userController.findUserById(sc));
 //                    System.out.println(userController.findUser(sc));
         return true;}),
-    PasswordAlter("4", i ->{
+    UpdatePw("4", i ->{
         System.out.println("4-비번변경");
         System.out.println(UserController.getinstance().updatePassword(i));
         return true;}),
@@ -48,18 +48,18 @@ public enum UserRouter {
         }
         Members.forEach((j)-> System.out.println(j));
         return true;}),
-    NameSerach("7", i ->{
+    SearchName("7", i ->{
         System.out.println("7-이름검색");
         System.out.println(UserController.getinstance().findUsersByName(i));
         UserController.getinstance().findUsersByName(i).forEach((j)->{
             System.out.println(j);
         });return true;}),
-    jobSerach("8", i ->{
+    SearchJob("8", i ->{
         System.out.println("8-직업검색");
         System.out.println(UserController.getinstance().findUsersByJob(i));
         UserController.getinstance().findUsersByJob(i).forEach(System.out::println);
         return true;}),
-    C0unt("9", i ->{
+    Count("9", i ->{
         System.out.println("9-회원수");
         System.out.println(UserController.getinstance().countUsers());
         return true;}),

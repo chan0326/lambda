@@ -6,7 +6,7 @@ import com.erich.api.enums.AccountRouter;
 
 import java.util.Scanner;
 
-public class AcoountView {
+public class AccountView {
 static  Accountcontroller accountcontroller = Accountcontroller.getinstance();
     public static void main(Scanner sc) {
         while (AccountRouter.execute(sc));
