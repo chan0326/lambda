@@ -1,8 +1,10 @@
 package com.erich.api.enums;
 
 import com.erich.api.member.UserController;
+import com.erich.api.menu.MenuController;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.BiPredicate;
@@ -77,9 +79,13 @@ public enum UserRouter {
             throw new RuntimeException(e);
         }
         return true;}),
-    TouchRow("rw",i ->{
+    TouchRow("touchrow",i ->{
         System.out.println("touchrow-테이블행추가");
-        UserController.getinstance().tableadd(i);
+        try {
+            UserController.getinstance().tableadd(i);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return true;}),
     TableDelete("rm", i ->{
         System.out.println("rm-테이블삭제");
@@ -100,24 +106,11 @@ public enum UserRouter {
 
     }
 
-    public static boolean execute( Scanner scanner ) {
+    public static boolean execute( Scanner scanner ) throws SQLException {
 
-        System.out.println("[사용자메뉴]\n" +
-                "0-종료\n " +
-                "1-회원가입\n " +
-                "2-로그인\n " +
-                "3-ID검색\n " +
-                "4-비번변경\n" +
-                "5-탈퇴\n " +
-                "ls-회원목록\n " +
-                "7-이름검색\n" +
-                "8-직업검색\n" +
-                "9-회원수\n"+
-                "10-UserMap\n"+
-                "touch-테이블생성\n"+
-                "touchrow-내용추가\n"+
-                "rm-테이블삭제\n"
-        );
+       List<?>ls =MenuController.getInstance().lsList("user");
+        System.out.println(ls);
+
         String boo = scanner.next();
         return Stream.of(values()).filter(i->i.input.equals(boo)).findAny().orElseGet(()->EXIT).Predicate.test(scanner);
     }

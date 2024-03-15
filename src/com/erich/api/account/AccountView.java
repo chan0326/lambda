@@ -4,11 +4,12 @@ package com.erich.api.account;
 
 import com.erich.api.enums.AccountRouter;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class AccountView {
 static  Accountcontroller accountcontroller = Accountcontroller.getinstance();
-    public static void main(Scanner sc) {
+    public static void main(Scanner sc) throws SQLException {
         while (AccountRouter.execute(sc));
 //        execute(sc);
 

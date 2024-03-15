@@ -13,4 +13,9 @@ public interface MenuService {
 
     List<?> getMenusByCategory(String category);
 
+    List<?> lsList(String category) throws SQLException;
+
+    Message returnMessage() throws SQLException;
+
+
 }

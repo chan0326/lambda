@@ -111,8 +111,9 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     }
 
     @Override
-    public String tableadd() {
-        return memberRepository.tableadd();
+    public Message tableadd() throws SQLException {
+         memberRepository.tableadd();
+         return null;
     }
 
 

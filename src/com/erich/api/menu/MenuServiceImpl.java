@@ -3,6 +3,7 @@ package com.erich.api.menu;
 import com.erich.api.enums.Message;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuServiceImpl implements  MenuService{
@@ -35,6 +36,21 @@ public class MenuServiceImpl implements  MenuService{
     public List<?> getMenusByCategory(String category) {
         return menuRepository.getMenusByCategory(category);
     }
+
+    @Override
+    public List<?> lsList(String category) throws SQLException {
+        return menuRepository.lsList(category);
+    }
+
+    @Override
+    public Message returnMessage() throws SQLException {
+         Message m = menuRepository.returnMessage();
+        return m;
+    }
+
+
+
+
     private void insertMenus(){
         /**
          * 공통 메뉴 명령어 정의

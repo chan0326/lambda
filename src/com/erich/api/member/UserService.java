@@ -1,5 +1,7 @@
 package com.erich.api.member;
 
+import com.erich.api.enums.Message;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -22,5 +24,5 @@ public interface UserService {
 
     String deleteTable() throws SQLException;
 
-    String tableadd();
+    Message tableadd( ) throws SQLException;
 }

@@ -22,7 +22,11 @@ public enum MainEntrance {
          return true;
      }),
      ACCOUNT("m", i -> {
-         AccountView.main(i);
+         try {
+             AccountView.main(i);
+         } catch (SQLException e) {
+             throw new RuntimeException(e);
+         }
          return true;
      }),
      CRAWLER("c", i -> {

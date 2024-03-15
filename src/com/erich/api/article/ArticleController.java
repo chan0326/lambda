@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ArticleController {
 
+    public static ArticleController getinstance;
     private ArticleServicelmpl articleServicelmpl;
 
     ArticleController(){

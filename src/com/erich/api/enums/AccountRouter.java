@@ -1,7 +1,10 @@
 package com.erich.api.enums;
 
 import com.erich.api.account.Accountcontroller;
+import com.erich.api.menu.MenuController;
 
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -43,16 +46,18 @@ public enum AccountRouter {
         this.predicate = predicate;
     }
 
-    public static Boolean execute(Scanner sc) {
-        System.out.println("[사용자메뉴]\n" +
-                "0-Exit\n " +
-                "1-Creat\n " +
-                "2-Deposit\n " +
-                "3-Withdraw\n " +
-                "4-Balance\n"+
-                "5-RemoveAccount\n"+
-                "6-AccountList\n"
-        );
+    public static Boolean execute(Scanner sc) throws SQLException {
+        List<?>ls = MenuController.getInstance().lsList("account");
+        System.out.println(ls);
+//        System.out.println("[사용자메뉴]\n" +
+//                "0-Exit\n " +
+//                "1-Creat\n " +
+//                "2-Deposit\n " +
+//                "3-Withdraw\n " +
+//                "4-Balance\n"+
+//                "5-RemoveAccount\n"+
+//                "6-AccountList\n"
+//        );
         String foo = sc.next();
         return Stream.of(values())
                 .filter(i->i.input.equals(foo))

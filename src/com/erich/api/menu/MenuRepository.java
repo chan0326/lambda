@@ -36,7 +36,12 @@ public class MenuRepository {
         return instance;
     }
 
-
+    public  Message returnMessage() throws SQLException {
+        String sql ="";
+        pstmt = connection.prepareStatement(sql);
+        Message m = null;
+        return m;
+    }
 
 
     public Message makeTable() {
@@ -89,5 +94,28 @@ public class MenuRepository {
         }
         return menus;
     }
+
+
+
+    public List<?> lsList(String category) throws SQLException {
+        List<Menu> ls =new ArrayList<>();
+        String sql ="select * from menus where category = ?";
+        pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1,category);
+        rs =pstmt.executeQuery();
+        if (rs.next()){
+            do {
+                Menu m =Menu.builder().item(rs.getString("item")).category(rs.getString("category")).build();
+                ls.add(m);
+            }while (rs.next());
+        }else {
+            System.out.println("NO DATA");
+        }
+        //리턴 타입이 messsage인 경우 이거는 message를 가져옴
+//        Message res = (pstmt.executeQuery() >= 0)?Message.SUCCESS:Message.FAIL;
+        // 리턴 타입이 리스트인 경우
+        return ls;
+    }
+
 
 }

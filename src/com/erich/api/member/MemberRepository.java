@@ -1,6 +1,6 @@
 package com.erich.api.member;
 
-import com.erich.api.article.Article;
+import com.erich.api.enums.Message;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -66,6 +66,7 @@ public class MemberRepository {
     }
 
     public String creatTable() throws SQLException {
+        int result;
 
         String sql = "CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(20),"
                 + " password varchar(20) , name VARCHAR(20),phone VARCHAR(20),height VARCHAR(20)," +
@@ -73,7 +74,8 @@ public class MemberRepository {
 
 
              pstmt = connection.prepareStatement(sql);
-        return (pstmt.executeUpdate() >=0)?"성공" :"실패" ;
+        result =pstmt.executeUpdate();
+        return (result >=0)?"성공" :"실패" ;
         // retrun (ex ==0) ? "succes" : "Fail"; 삼항 연산자.
     }
 
@@ -90,8 +92,21 @@ public class MemberRepository {
         return "테이블 삭제 성공";
     }
 
-    public String tableadd() {
+    public Message tableadd() throws SQLException {
+        Member member = new Member();
+        int result = 0;
+        String sql = "INSERT INTO users(username, password) VALUES(?,?)";
+        pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1,member.getUsername());
+        pstmt.setString(2,member.getPassword());
+        result = pstmt.executeUpdate();
 
-        return "내용추가 성공";
+        System.out.println((result >0)?Message.SUCCESS:Message.FAIL);
+
+        return (result >0)?Message.SUCCESS:Message.FAIL;
+
+
+
+
     }
 }

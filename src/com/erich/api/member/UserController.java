@@ -119,7 +119,7 @@ public class UserController {
 
     }
 
-    public String tableadd(Scanner sc) {
+    public Message tableadd(Scanner sc) throws SQLException {
         System.out.println("username, " +
                 "비밀번호, " +
                 "비밀번호 확인, " +
@@ -135,7 +135,8 @@ public class UserController {
                 .phone(sc.next())
                 .job(sc.next())
                 .build());
-         return userService.tableadd();
+        userService.tableadd();
+        return  null;
 
     }
 }
